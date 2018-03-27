@@ -10,6 +10,7 @@ source 'https://rubygems.org'
   gem 'rails-controller-testing'
 end
 
+  gem 'bootstrap-sass'
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
  gem 'rails', '~> 5.1.2'
 

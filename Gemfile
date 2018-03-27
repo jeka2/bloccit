@@ -5,6 +5,11 @@ source 'https://rubygems.org'
    "https://github.com/#{repo_name}.git"
  end
 
+ group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'rails-controller-testing'
+end
+
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
  gem 'rails', '~> 5.1.2'
 

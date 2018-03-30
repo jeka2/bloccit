@@ -23,7 +23,7 @@ puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 
-  Post.find_or_create_by!(
+  new_post = Post.find_or_create_by!(
 
     title: "Unique Title",
     body: "Unique Body"
@@ -32,4 +32,5 @@ puts "#{Comment.count} comments created"
   Comment.create!(
 
     body: "Uniquer Body"
+    post_id: new_post.id
   )

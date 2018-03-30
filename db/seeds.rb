@@ -8,6 +8,7 @@ require 'random_data'
     body: RandomData.random_paragraph
   )
 end
+
 posts = Post.all
 
 100.times do
@@ -21,3 +22,14 @@ end
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+
+  Post.find_or_create_by!(
+
+    title: "Unique Title",
+    body: "Unique Body"
+  )
+
+  Comment.create!(
+
+    body: "Uniquer Body"
+  )

@@ -31,6 +31,7 @@ puts "#{Comment.count} comments created"
 
   Comment.create!(
 
-    body: "Uniquer Body"
+    body: "Uniquer Body",
     post_id: new_post.id
+
   )

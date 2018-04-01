@@ -1,6 +1,13 @@
 class PostsController < ApplicationController
   def index
+    i = 1
     @posts = Post.all
+    @posts.map do |post|
+        if i == 1 || i % 5 == 0
+            post.title = "SPAM"
+        end
+        i += 1
+    end
   end
 
   def show
@@ -10,12 +17,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    i = 1
-    @posts.map! do |post|
-        if i == 1 || i % 5 == 0
-            post.title = "SPAM"
-        end
-        i += 1
-    end
+
   end
 end

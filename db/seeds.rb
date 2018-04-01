@@ -35,3 +35,12 @@ puts "#{Comment.count} comments created"
     post_id: new_post.id
 
   )
+
+  50.times do
+   # #1
+     Advertisement.create!(
+   # #2
+       title:  RandomData.random_sentence,
+       copy:   RandomData.random_paragraph
+     )
+   end

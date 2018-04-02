@@ -19,6 +19,16 @@ posts = Post.all
   )
 end
 
+50.times do
+
+  Question.create!(
+
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    resolved: false
+  )
+end
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
@@ -29,7 +39,7 @@ puts "#{Comment.count} comments created"
     body: "Unique Body"
   )
 
-  Comment.create!(
+  Comment.find_or_create_by!(
 
     body: "Uniquer Body",
     post_id: new_post.id

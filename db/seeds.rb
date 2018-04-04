@@ -29,7 +29,7 @@ puts "#{Comment.count} comments created"
     body: "Unique Body"
   )
 
-  Comment.create!(
+  Comment.find_or_create_by!(
 
     body: "Uniquer Body",
     post_id: new_post.id
@@ -42,5 +42,6 @@ puts "#{Comment.count} comments created"
    # #2
        title:  RandomData.random_sentence,
        copy:   RandomData.random_paragraph
+       price:  rand(1..1000)
      )
    end

@@ -29,7 +29,7 @@ puts "#{Comment.count} comments created"
     body: "Unique Body"
   )
 
-  Comment.create!(
+  Comment.find_or_create_by!(
 
     body: "Uniquer Body"
     post_id: new_post.id

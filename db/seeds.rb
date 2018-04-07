@@ -1,13 +1,22 @@
 require 'random_data'
 
+15.times do
+   Topic.create!(
+     name:         RandomData.random_sentence,
+     description:  RandomData.random_paragraph
+   )
+ end
+ topics = Topic.all
+
 50.times do
 
   Post.create!(
-
+    topic:  topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
   )
 end
+
 posts = Post.all
 
 100.times do
@@ -18,6 +27,30 @@ posts = Post.all
   )
 end
 
+50.times do
+
+  Question.create!(
+
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    resolved: false
+  )
+end
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Question.count} comments created"
+
+  new_post = Post.find_or_create_by!(
+
+    title: "Unique Title",
+    body: "Unique Body"
+  )
+
+  Comment.find_or_create_by!(
+
+    body: "Uniquer Body",
+    post_id: new_post.id
+
+  )

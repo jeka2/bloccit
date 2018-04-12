@@ -12,11 +12,11 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    Question.new(params.require(:question).permit(:title, :body, :resolved))
+    params.require(:question).permit(:title, :body, :resolved)
   end
 
   def create
-    @question = question_params
+    @question = Question.new(question_params)
     if @question.save
       flash[:notice] = "Question was saved"
       redirect_to @question
@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question = question_params
+    @question = Question.new(question_params)
     if @question.save
       flash[:notice] = "Question was updated"
       redirect_to @question

@@ -1,2 +1,0 @@
-class SponsoredPost < ApplicationRecord
-end

@@ -95,5 +95,3 @@ describe "PUT update" do
     expect(updated_question.body).to eq new_body
   end
 end
-
-end

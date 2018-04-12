@@ -37,12 +37,23 @@ end
   )
 end
 
+50.times do
+
+  Advertisement.create!(
+
+    title: RandomData.random_sentence,
+    copy: RandomData.random_paragraph,
+    price: rand(1..1000)
+  )
+end
+
 puts "Seed finished"
+puts "#{Advertisement.count} created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} comments created"
 
-  new_post = Post.find_or_create_by!(
+  Post.find_or_create_by!(
 
     title: "Unique Title",
     body: "Unique Body"

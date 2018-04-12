@@ -1,6 +1,13 @@
-<h1>Advertisement#show</h1>
-<p>Find me in app/views/advertisement/show.html.erb</p>
-
 <h1><%= @ad.title %></h1>
-<p><%= @ad.copy %></p>
-<p><%= @ad.price %></p>
+
+<div class="row">
+  <div class="col-md-8">
+    <p><%= @ad.copy %></p>
+  </div>
+  <div class="col-md-4">
+    <%= link_to "Edit", edit_advertisement_path(@ad), class: 'btn btn-success' %>
+     <%= link_to "Delete Ad", [@ad], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this ad?' } %>
+   </div>
+ </div>
+  </div>
+</div>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :advertisements
 
+  resources :users, only: [:new, :create]
+
   resources :topics do
      resources :posts, except: [:index]
    end

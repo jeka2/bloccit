@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-   resources :topics
+  resources :topics
 
   resources :questions
 
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :topics do
      resources :posts, except: [:index]
    end
+
+  post 'users/confirm' => 'users#confirm'
 
   get 'about' => 'welcome#about'
 

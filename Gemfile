@@ -13,6 +13,9 @@ source 'https://rubygems.org'
   gem 'shoulda'
 end
 
+  gem 'bcrypt', git: 'git://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+  gem 'sorcery'
+
   gem 'bootstrap-sass'
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
  gem 'rails', '~> 5.1.2'

@@ -1,5 +1,14 @@
 require 'random_data'
 
+5.times do
+   User.create!(
+   name:     RandomData.random_name,
+   email:    RandomData.random_email,
+   password: RandomData.random_sentence
+   )
+ end
+ users = User.all
+
 15.times do
    Topic.create!(
      name:         RandomData.random_sentence,
@@ -11,6 +20,7 @@ require 'random_data'
 50.times do
 
   Post.create!(
+    user: users.sample,
     topic:  topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
@@ -37,18 +47,22 @@ end
   )
 end
 
-50.times do
+admin = User.create!(
+   name:     'Admin User',
+   email:    'admin@example.com',
+   password: 'helloworld',
+   role:     'admin'
+ )
 
-  Advertisement.create!(
+ member = User.create!(
+   name:     'Member User',
+   email:    'member@example.com',
+   password: 'helloworld'
+ )
 
-    title: RandomData.random_sentence,
-    copy: RandomData.random_paragraph,
-    price: rand(1..1000)
-  )
-end
 
 puts "Seed finished"
-puts "#{Advertisement.count} created"
+puts "#{User.count} users.created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Question.count} comments created"

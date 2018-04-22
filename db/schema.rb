@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20180422002728) do
   end
 
 # Could not dump table "comments" because of following StandardError
-#   Unknown type 'reference' for column 'user'
+#   Unknown type '' for column 'user'
 
   create_table "posts", force: :cascade do |t|
     t.string "title"

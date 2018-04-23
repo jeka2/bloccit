@@ -20,8 +20,15 @@ ActiveRecord::Schema.define(version: 20180422002728) do
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
-# Could not dump table "comments" because of following StandardError
-#   Unknown type '' for column 'user'
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"

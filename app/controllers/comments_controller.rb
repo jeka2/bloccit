@@ -9,10 +9,14 @@ class CommentsController < ApplicationController
      comment = @post.comments.new(comment_params)
      comment.user = current_user
 
+
+
      if comment.save
        flash[:notice] = "Comment saved successfully."
        redirect_to [@post.topic, @post]
      else
+       puts "COMMENTS-----------------"
+       p comment.valid?
        flash[:alert] = "Comment failed to save."
        redirect_to [@post.topic, @post]
      end

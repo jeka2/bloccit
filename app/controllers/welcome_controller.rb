@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+include SessionsHelper
   def index
   end
 

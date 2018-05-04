@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
 
   before_action :require_sign_in, except: :show
+  if current_user.moderator?
+    before_action :moderator_privilege, except: [:show,:new,:create,:edit,:update]
+  else
+    before_action :authorize_user, except: [:show,:new,:create]
+  end
 
   def show
     @post = Post.find(params[:id])
@@ -61,6 +66,16 @@ class PostsController < ApplicationController
      params.require(:post).permit(:title, :body)
    end
 
+   def authorize_user
+     post = Post.find(params[:id])
+     unless current_user == post.user || current_user.admin?
+       flash[:alert] = "You must be an admin to do that."
+       redirect_to [post.topic, post]
+     end
+   end
 
-
+   def moderator_privilege
+     flash[:alert] = "You must be an admin to do that."
+     redirect_to [post.topic, post]
+   end
 end

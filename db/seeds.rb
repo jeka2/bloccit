@@ -1,3 +1,4 @@
+
 require 'random_data'
 
 5.times do
@@ -9,7 +10,7 @@ require 'random_data'
  end
  users = User.all
 
-15.times do
+ 15.times do
    Topic.create!(
      name:         RandomData.random_sentence,
      description:  RandomData.random_paragraph
@@ -17,37 +18,17 @@ require 'random_data'
  end
  topics = Topic.all
 
-50.times do
+ 50.times do
+   Post.create!(
+     user:   users.sample,
+     topic:  topics.sample,
+     title:  Faker::Lorem.sentence,
+     body:   Faker::Lorem.paragraph
+   )
+ end
+ posts = Post.all
 
-  Post.create!(
-    user: users.sample,
-    topic:  topics.sample,
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
-  )
-end
-
-posts = Post.all
-
-100.times do
-  Comment.create!(
-
-    post: posts.sample,
-    body: RandomData.random_paragraph
-  )
-end
-
-50.times do
-
-  Question.create!(
-
-    title: RandomData.random_sentence,
-    body: RandomData.random_paragraph,
-    resolved: false
-  )
-end
-
-admin = User.create!(
+ admin = User.create!(
    name:     'Admin User',
    email:    'admin@example.com',
    password: 'helloworld',
@@ -60,11 +41,13 @@ admin = User.create!(
    password: 'helloworld'
  )
 
-puts "Seed finished"
-puts "#{User.count} users.created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
-puts "#{Question.count} comments created"
+
+ puts "Seed finished"
+ puts "#{User.count} users created"
+ puts "#{Topic.count} topics created"
+ puts "#{Post.count} posts created"
+ puts "#{Comment.count} comments created"
+
 
   Post.find_or_create_by!(
 

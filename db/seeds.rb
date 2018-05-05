@@ -1,4 +1,3 @@
-
 require 'random_data'
 
 5.times do
@@ -22,8 +21,8 @@ require 'random_data'
    post = Post.create!(
      user:   users.sample,
      topic:  topics.sample,
-     title:  Faker::Lorem.sentence,
-     body:   Faker::Lorem.paragraph
+     title:  RandomData.random_sentence,
+     body:   RandomData.random_paragraph
    )
 
    post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
@@ -37,6 +36,7 @@ require 'random_data'
      post: posts.sample,
      body: RandomData.random_paragraph
    )
+end
 
  admin = User.create!(
    name:     'Admin User',

@@ -2,11 +2,8 @@ class TopicsController < ApplicationController
 include SessionsHelper
 
   before_action :require_sign_in, except: [:index, :show]
-  if current_user.moderator?
-    before_action :moderator_privilege, except: [:index, :show, :edit, :update]
-  else
-    before_action :authorize_user, except: [:index, :show]
-  end
+  before_action :admin, only: [:new, :create, :delete]
+  before_action :mod, only: [:edit, :update]
 
   def index
      @topics = Topic.all
@@ -21,7 +18,7 @@ include SessionsHelper
    end
 
    def create
-     @topic = Topic(topic_params)
+     @topic = Topic.new(topic_params)
 
      if @topic.save
        redirect_to @topic, notice: "Topic was saved successfully."

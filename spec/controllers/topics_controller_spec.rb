@@ -154,6 +154,13 @@ RSpec.describe TopicsController, type: :controller do
       create_session(user)
     end
 
+    describe "DELETE destroy" do
+      it "returns http redirect" do
+        delete :destroy, params: { id: my_topic.id }
+        expect(response).to redirect_to(topics_path)
+      end
+    end
+
     describe "GET index" do
       it "returns http success" do
         get :index

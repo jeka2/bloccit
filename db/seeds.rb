@@ -22,17 +22,31 @@ require 'random_data'
    Post.create!(
      user:   users.sample,
      topic:  topics.sample,
-     title:  Faker::Lorem.sentence,
-     body:   Faker::Lorem.paragraph
+     title:  RandomData.random_sentence,
+     body:   RandomData.random_paragraph
    )
  end
  posts = Post.all
+
+ 100.times do
+   Comment.create!(
+     post: posts.sample,
+     body: RandomData.random_sentence,
+   )
+ end
 
  admin = User.create!(
    name:     'Admin User',
    email:    'admin@example.com',
    password: 'helloworld',
    role:     'admin'
+ )
+
+ moderator = User.create!(
+   name:     "Mod",
+   email:    "mod@example.com",
+   password: "helloworld",
+   role:     "moderator"
  )
 
  member = User.create!(
@@ -47,17 +61,3 @@ require 'random_data'
  puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
-
-
-  Post.find_or_create_by!(
-
-    title: "Unique Title",
-    body: "Unique Body"
-  )
-
-  Comment.find_or_create_by!(
-
-    body: "Uniquer Body",
-    post_id: new_post.id
-
-  )

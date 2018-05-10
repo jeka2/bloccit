@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :require_sign_in, except: :show
-  before_action :administrator_authorization, only: [:new,:create,:delete]
+  before_action :administrator_authorization, only: [:delete]
   before_action :moderator_authorization, only: [:edit,:update]
 
 
@@ -46,9 +46,8 @@ class PostsController < ApplicationController
   end
 
   def update
-     @topic = Topic.find(params[:topic_id])
      @post = Post.find(params[:id])
-     @post = @topic.posts.build(post_params)
+     @post.assign_attributes(post_params)
 
      if @post.save
        flash[:notice] = "Post was updated."
@@ -73,7 +72,10 @@ class PostsController < ApplicationController
    end
 
    def moderator_authorization
-     flash[:alert] = "You must be an admin to do that."
-     redirect_to [post.topic, post]
+     post = Post.find(params[:id])
+     unless current_user == post.user || current_user.admin? || current_user.moderator?
+       flash[:alert] = "You don't have the permission to do that."
+       redirect_to [post.topic, post]
+     end
    end
 end

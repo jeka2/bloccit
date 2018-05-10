@@ -2,8 +2,8 @@ class TopicsController < ApplicationController
 include SessionsHelper
 
   before_action :require_sign_in, except: [:index, :show]
-  before_action :admin, only: [:new, :create, :delete]
-  before_action :mod, only: [:edit, :update]
+  before_action :administrator_authorization, only: [:new, :create, :delete]
+  before_action :moderator_authorization, only: [:edit, :update]
 
   def index
      @topics = Topic.all
@@ -62,15 +62,17 @@ include SessionsHelper
      params.require(:topic).permit(:name,:description,:public)
    end
 
-   def authorize_user
+   def administrator_authorization
      unless current_user.admin?
        flash[:alert] = "You must be an admin to do that."
        redirect_to topics_path
      end
    end
 
-   def moderator_privilege
-     flash[:alert] = "You must be an admin to do that."
-     redirect_to topics_path
-   end
+   def moderator_authorization
+     unless current_user.admin? || current_user.moderator?
+       flash[:alert] = "You must be an admin to do that."
+       redirect_to topics_path
+    end
+  end
 end

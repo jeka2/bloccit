@@ -6,7 +6,6 @@ source 'https://rubygems.org'
  end
 
  gem 'bcrypt', git: 'git://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
- gem 'sorcery'
  gem 'bootstrap-sass'
  gem 'rails', '~> 5.1.2'
  gem 'puma', '~> 3.0'

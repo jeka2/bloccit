@@ -4,25 +4,20 @@ require 'rails_helper'
    let(:name) { RandomData.random_sentence }
    let(:description) { RandomData.random_paragraph }
    let(:public) { true }
-   let(:topic) { Topic.create!(name: name, description: description) }
+   let(:topic) { create(:topic) }
 
    it { is_expected.to have_many(:posts) }
-
-<<<<<<< HEAD
    it { is_expected.to validate_presence_of(:name) }
    it { is_expected.to validate_presence_of(:description) }
-
    it { is_expected.to validate_length_of(:name).is_at_least(5) }
    it { is_expected.to validate_length_of(:description).is_at_least(15) }
-=======
-  it { is_expected.to validate_presence_of(:name) }
-  it { is_expected.to validate_presence_of(:description) }
 
-  it { is_expected.to validate_length_of(:name).is_at_least(5) }
-  it { is_expected.to validate_length_of(:description).is_at_least(15) }
->>>>>>> authorization-v2
 
    describe "attributes" do
+     it "responds to name and description attributes" do
+       expect(topic).to have_attributes(name: topic.name, description: topic.description)
+     end
+
      it "has name, description, and public attributes" do
        expect(topic).to have_attributes(name: name, description: description, public: public)
      end

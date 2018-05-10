@@ -58,17 +58,3 @@ end
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
  puts "#{Vote.count} votes created"
-
-
-  Post.find_or_create_by!(
-
-    title: "Unique Title",
-    body: "Unique Body"
-  )
-
-  Comment.find_or_create_by!(
-
-    body: "Uniquer Body",
-    post_id: new_post.id
-
-  )

@@ -20,7 +20,7 @@ class FavoriteMailer < ApplicationMailer
      headers["In-Reply-To"] = "<post/#{post.id}@your-app-name.example>"
      headers["References"] = "<post/#{post.id}@your-app-name.example>"
 
-
+     @post = post
 
      mail(to: post.user, subject: "You have favorited post #{post.title}")
    end

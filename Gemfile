@@ -24,7 +24,7 @@ source 'https://rubygems.org'
   gem 'rails-controller-testing'
   gem "pry-rails"
   gem 'shoulda'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_bot_rails'
 end
 
  group :production do

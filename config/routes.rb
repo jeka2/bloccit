@@ -22,6 +22,8 @@ Rails.application.routes.draw do
      resources :posts, except: [:index]
    end
 
+  post 'link' => 'topics#link'
+
   get 'about' => 'welcome#about'
 
   root 'welcome#index'
